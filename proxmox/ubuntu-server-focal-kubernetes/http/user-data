@@ -1,0 +1,33 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  keyboard:
+    layout: de
+  ssh:
+    install-server: true
+    allow-pw: true
+    disable_root: true
+    ssh_quiet_keygen: true
+    allow_public_ssh_keys: true
+  packages:
+    - qemu-guest-agent
+    - sudo
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  user-data:
+    package_upgrade: false
+    timezone: Europe/Berlin
+    users:
+      - name: leonardo
+        groups: [adm, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        # passwd: 123mudar!
+        # - or -
+        ssh_authorized_keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCoIWLQIU8c2s8cGJzyYaCnQE8pir9OB8k/qK59kqdj6/c0HGJtvcuLajAy4Recwa5eDvx2bMAU66supZx1uNsXXAv55vhCzEAz/h810NRCxUshsr05DJblo8GlpCMk/+Z0ASVi/mJ6xeXngx7OpsBEh/bmvc1TUvmFI4LD4Bk3ErU87eEbCdbMV+St2ibzd1bX+lguXuEkSYa6qT7x7Peh+pk16vrFtY5oMql1O0Dvw/Y2hmCtsGDaAbOln5VOKOQ7n1rsWFlTU2nL0UGTp2moTw8+SOVljf9M9H7QEsmW2qZSt2wxI0LaP9TCZqfWEFO4CoraXGUk++ZHRawaR6xR leonardo
